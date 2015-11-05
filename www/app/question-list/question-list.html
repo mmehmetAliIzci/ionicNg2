@@ -9,13 +9,14 @@
   <ion-list>
     <ion-item *ng-for="#item of items" (click)="itemTapped($event, item)">
       <icon name="{{item.icon}}" item-left></icon>
-      {{item.title}}
+      {{item.body}}
       <div class="item-note" item-right>
-        {{item.note}}
+        Sender: {{item.phone}}
       </div>
     </ion-item>
   </ion-list>
+  
   <div *ng-if="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
+    You navigated here from <b>{{selectedItem.body}}</b>
   </div>
 </ion-content>

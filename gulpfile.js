@@ -59,6 +59,7 @@ gulp.task('serve', function() {
     files: [
       'www/**/*.html'
     ],
+    browser: "google-chrome",
     notify: false
   });
 });

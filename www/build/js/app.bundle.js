@@ -73512,28 +73512,29 @@
 	};
 	var ionic_1 = __webpack_require__(43);
 	var question_details_1 = __webpack_require__(519);
+	var http_1 = __webpack_require__(277);
 	var QuestionListPage = (function () {
-	    function QuestionListPage(app, nav, navParams) {
+	    function QuestionListPage(http, app, nav, navParams) {
+	        var _this = this;
 	        this.nav = nav;
+	        this.items = [];
+	        http.get('http://localhost:3000/questions.js').subscribe(function (response) {
+	            return _this.items = response.json();
+	        });
 	        // If we navigated to this page, we will have an item available as a nav param
 	        this.selectedItem = navParams.get('item');
-	        this.items = [];
-	        for (var i = 1; i < 20; i++) {
-	            this.items.push({
-	                title: 'Question ' + i,
-	                note: 'This is question #' + i
-	            });
-	        }
 	    }
 	    QuestionListPage.prototype.itemTapped = function (event, item) {
-	        console.log('You selected:', item.title);
+	        console.log('You selected:', item.body);
 	        this.nav.push(question_details_1.QuestionDetailsPage, {
 	            item: item
 	        });
 	    };
 	    QuestionListPage = __decorate([ionic_1.Page({
+	        selector: 'http-app',
+	        viewProviders: [http_1.HTTP_PROVIDERS],
 	        templateUrl: 'app/question-list/question-list.html'
-	    }), __metadata('design:paramtypes', [typeof ionic_1.IonicApp !== 'undefined' && ionic_1.IonicApp || Object, typeof ionic_1.NavController !== 'undefined' && ionic_1.NavController || Object, typeof ionic_1.NavParams !== 'undefined' && ionic_1.NavParams || Object])], QuestionListPage);
+	    }), __metadata('design:paramtypes', [typeof http_1.Http !== 'undefined' && http_1.Http || Object, typeof ionic_1.IonicApp !== 'undefined' && ionic_1.IonicApp || Object, typeof ionic_1.NavController !== 'undefined' && ionic_1.NavController || Object, typeof ionic_1.NavParams !== 'undefined' && ionic_1.NavParams || Object])], QuestionListPage);
 	    return QuestionListPage;
 	})();
 	exports.QuestionListPage = QuestionListPage;
